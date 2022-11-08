@@ -18,8 +18,4 @@ const onTimeUpdate = function(currentTime) {
 	localStorage.setItem(videoTimeReached, JSON.stringify(currentTime.seconds));
 };
 
-// const onTimeUpdateThrottled = _.throttle(onTimeUpdate, 1000);
-
 player.on('timeupdate', throttle(onTimeUpdate, 1000));
-
-// player.on('timeupdate', onTimeUpdateThrottled);
