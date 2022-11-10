@@ -6,6 +6,17 @@ const inputMessage = document.querySelector('textarea');
 const formInputValues = 'feedback-form-state';
 let formData = {};
 
+function reloadPege() {
+  if (!localStorage.getItem(formInputValues)) {
+    return
+  };
+  const localStorageData = JSON.parse(localStorage.getItem(formInputValues));
+  inputEmail.value = localStorageData.email || '';
+  inputMessage.value = localStorageData.message || '';
+}
+
+reloadPege();
+
 const onFormInput = function (evt) {
   formData.email = inputEmail.value;
   formData.message = inputMessage.value;
@@ -24,11 +35,3 @@ const onFormSubmit = function (event) {
 form.addEventListener('input', throttle(onFormInput, 500));
 
 form.addEventListener('submit', onFormSubmit);
-
-function reloadPege() {
-  const localStorageData = JSON.parse(localStorage.getItem(formInputValues));
-  inputEmail.value = localStorageData.email || '';
-  inputMessage.value = localStorageData.message || '';
-}
-
-reloadPege();

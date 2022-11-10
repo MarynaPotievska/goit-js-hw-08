@@ -6,6 +6,9 @@ const player = new Player(iframe);
 const videoTimeReached = 'videoplayer-current-time';
 
 function restartPage() {
+  if (!localStorage.getItem(videoTimeReached)) {
+    return
+  };
   const savedTime = JSON.parse(localStorage.getItem(videoTimeReached));
   player.setCurrentTime(savedTime).then(function (seconds) {
     player.play();
